@@ -9,12 +9,11 @@
 //   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 //   greetMsg.value = await invoke("greet", { name: name.value });
 // }
-
+import Header from '@/components/general/Header.vue';
+import Main from '@/components/Main.vue';
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline bg-red-400">
-    Hello world!
-  </h1>
-  <Button>Click me</Button>
+  <Header class="bg-red-300"/>
+  <Main class="h-full"/>
 </template>
