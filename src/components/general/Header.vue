@@ -2,9 +2,10 @@
 import { Minimize, Maximize2, X } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 import { getCurrentWindow  } from "@tauri-apps/api/window";
-
+import { useColorMode } from '@vueuse/core'
+import { Sun, Moon } from 'lucide-vue-next'
 const appWindow = getCurrentWindow();
-
+const colorMode = useColorMode()  
 const minimize = async() => {
   await appWindow.minimize();
 };
@@ -19,12 +20,21 @@ const close = async () => {
 </script>
 
 <template>
-  <div class="title-bar w-full h-8 flex items-center justify-between bg-sidebar select-none  fixed">
+  <div class="title-bar w-full h-8 flex items-center justify-between bg-sidebar select-none">
     <!-- 左侧区域 - 用于拖动窗口 -->
     <div class="w-1/3 h-full"></div>
     
     <!-- 右侧区域 - 窗口控制按钮 -->
     <div class="window-controls flex justify-end items-center h-full w-1/3">
+      <Button 
+      variant="ghost"
+      size="icon"
+      class="hover:bg-secondary aspect-square rounded dark:hover:bg-sidebar-ring"
+      @click="()=>{colorMode = colorMode === 'light' ? 'dark' : 'light'}"
+      >
+        <Sun v-if="colorMode === 'light'" class="h-4 w-4" />
+        <Moon v-else class="h-4 w-4" />
+      </Button>
       <Button 
         variant="ghost" 
         size="icon" 
