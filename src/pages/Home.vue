@@ -6,10 +6,15 @@ import { Switch } from '@/components/ui/switch'
 import { Crop } from 'lucide-vue-next'
 import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { Settings } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const routeToSettings = () => {
+    router.push('/settings')
+}
 </script>
 <template>
-    <div class="h-full w-full flex justify-start items-center flex-col">
-        <div id='top' class="w-1/2 justify-between flex items-center mt-16 ">
+    <div class="h-full w-full flex justify-center items-center flex-col transition-all! duration-400">
+        <div id='top' class="w-full max-w-[768px] justify-between flex items-center mt-16 ">
             <div class="w-1/8"></div>
             <div class="">
                 <div id="banner" class="flex">
@@ -19,12 +24,12 @@ import { Settings } from 'lucide-vue-next'
             <p>Professional Windows Screenshot Workflow</p>
             </div>
             <div class="w-1/8 flex justify-end">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" @click="routeToSettings">
                     <Settings />
                 </Button>
             </div>
         </div>
-        <div id='middle' class="w-1/2 bg-sidebar rounded-2xl flex-col mt-4 flex justify-center items-center py-8">
+        <div id='middle' class="w-full max-w-[768px] bg-sidebar rounded-2xl flex-col mt-4 flex justify-center items-center py-8">
             <div class="w-full flex justify-center py-2 items-center px-8">
                 <Button class="w-1/3 mx-1"><Crop/>Region</Button>
                 <Button class="w-1/3 mx-1"><Crop/>Screen</Button>
@@ -40,7 +45,7 @@ import { Settings } from 'lucide-vue-next'
                 </div>
             </div>
         </div>
-        <div id='bottom' class="w-1/2 bg-sidebar rounded-2xl flex-col mt-4 flex justify-center items-center py-4">
+        <div id='bottom' class="w-full max-w-[768px] bg-sidebar rounded-2xl flex-col mt-4 flex justify-center items-center py-4">
             <div class="w-full px-8">
                 <p class="text-lg font-bold ">Keyboard Shorcut</p>
             </div>

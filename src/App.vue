@@ -13,5 +13,5 @@ import Main from '@/components/Main.vue';
 </script>
 
 <template class="flex flex-col">
-  <Main class="h-screen w-screen flex flex-col"/>
+  <Main class="h-screen w-screen flex flex-col "/>
 </template>

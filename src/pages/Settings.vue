@@ -4,12 +4,17 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, Clipboard, Folder } from 'lucide-vue-next'
 import Switch from '@/components/ui/switch/Switch.vue';
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const routeToSettings = () => {
+    router.push('/')
+}
 </script>
 <template>
-    <div class="w-full overflow-auto h-full flex justify-center items-center">
-        <div id="settings-container" class="w-3/5 h-full px-4 py-4">
+    <div class="w-full overflow-auto h-full flex justify-center items-center transition-all! duration-400! ease-linear!">
+        <div id="settings-container" class="w-3/5 h-full px-4 py-4 max-w-[768px]">
             <header class="w-full h-16 flex items-center justify-start">
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" @click="routeToSettings">
                     <ArrowLeft />
                 </Button>
                 <div class="flex flex-col justify-start mx-4">
@@ -51,9 +56,8 @@ import Switch from '@/components/ui/switch/Switch.vue';
                 </div>
                 <div class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4">
                     <p class="text-xl font-bold">Default Background</p>
-                    <div class="grid grid-cols-4 gap-4">
-                        <div v-for="i in 16" :key="i" class="bg-background/50 hover:bg-green-300/80 ease-in-out transition-all duration-600 flex justify-center items-center aspect-square rounded-2xl">
-                            1
+                    <div class="grid grid-cols-4 gap-4 mt-4">
+                        <div v-for="i in 16" :key="i" class=" duration-350 ease-in-out flex justify-center items-center aspect-square rounded-2xl cursor-pointer bg-[url(/src/assets/bg-imgs/3.jpeg)] object-cover">
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.18",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
     "@vueuse/core": "^14.1.0",
@@ -19,7 +19,8 @@
     "lucide-vue-next": "^0.554.0",
     "reka-ui": "^2.7.0",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-transitions": "^2.2.0",
     "vue": "^3.5.13",
     "vue-router": "^4.6.4"
   },

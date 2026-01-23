@@ -6,7 +6,7 @@ import Settings from '@/pages/Settings.vue'
 const routes = [
   {
     path: '/',
-    component: Settings
+    component: Home
   },
   {
     path: '/settings',
