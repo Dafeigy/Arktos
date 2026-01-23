@@ -2,7 +2,7 @@
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ArrowLeft, Clipboard, Folder } from 'lucide-vue-next'
+import { ArrowLeft, Clipboard, Folder,Upload } from 'lucide-vue-next'
 import Switch from '@/components/ui/switch/Switch.vue';
 import { useRouter } from 'vue-router'
 const router = useRouter()
@@ -11,8 +11,8 @@ const routeToSettings = () => {
 }
 </script>
 <template>
-    <div class="w-full overflow-auto h-full flex justify-center items-center transition-all! duration-400! ease-linear!">
-        <div id="settings-container" class="w-3/5 h-full px-4 py-4 max-w-[768px]">
+    <div class="w-full overflow-auto h-full flex justify-center items-center transition-all! duration-400! ease-linear! my-8">
+        <div id="settings-container" class="w-3/5 h-full px-4 py-4 max-w-[768px] ">
             <header class="w-full h-16 flex items-center justify-start">
                 <Button variant="ghost" size="icon" @click="routeToSettings">
                     <ArrowLeft />
@@ -23,8 +23,8 @@ const routeToSettings = () => {
                 </div>
             </header>
             <Separator class="mt-1" />
-            <div class="mt-4">
-                <div class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4">
+            <div class="mt-4 h-auto">
+                <div class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4" id="general-setting">
                     <p class="text-xl font-bold">General</p>
                     <div>
                         <div class="flex text-sm">
@@ -54,16 +54,55 @@ const routeToSettings = () => {
                         </div>
                     </div>
                 </div>
-                <div class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4">
+                <div class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4 mt-8" id="background-editor">
                     <p class="text-xl font-bold">Default Background</p>
+                    <div class="flex justify-between items-center mt-8">
+                        <p class="text-sm">Default Background Image</p>
+                        <Button class="cursor-pointer">
+                            <Upload />Upload
+                        </Button>
+                    </div>
                     <div class="grid grid-cols-4 gap-4 mt-4">
-                        <div v-for="i in 16" :key="i" class=" duration-350 ease-in-out flex justify-center items-center aspect-square rounded-2xl cursor-pointer bg-[url(/src/assets/bg-imgs/3.jpeg)] object-cover">
+                        <div v-for="i in 7" :key="i" class=" duration-350 ease-in-out flex justify-center items-center aspect-square rounded-2xl cursor-pointer bg-select-dsplay" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }"> </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-8">
+                        <p class="text-sm">Windows/MacOS/Linux Assets</p>
+                    </div>
+                    <div class="grid grid-cols-4 gap-4 mt-4">
+                        <div v-for="i in 7" :key="i" class=" duration-350 ease-in-out flex justify-center items-center aspect-square rounded-2xl cursor-pointer bg-select-dsplay" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }"> </div>
+                    </div>
+                </div>
+                <div class="rounded-xl mb-20 h-1/4 bg-sidebar px-8 py-4 mt-8" id="keyboard-shortcut-editor">
+                    <p class="text-xl font-bold">Keyboard Shortcuts</p>
+                    <div>
+                        <div class="flex text-sm">
+                            <div class="flex items-center py-2">
+                                <Folder class="w-4.5 h-4.5"/>
+                                <p class="mx-2">Save Directory</p>
+                            </div>
+                        </div>
+                        <Input placeholder="Select save directory" />
+                        <p class="text-xs mt-2">Screenshot will be saved to this directory</p>
+                    </div>
+                    <div class="w-full mt-4" >
+                        <div class="flex text-sm ">
+                            <div class="flex items-center py-2 justify-between w-full">
+                                <div class="">
+                                    <div class="flex">
+                                        <Clipboard class="w-4.5 h-4.5"/>
+                                        <p class="mx-2">copy to clipboard</p>
+                                    </div>
+                                    
+                                    <p class="text-xs mt-2">
+                                        Automatically copy screenshots to clipboard after saving
+                                    </p>
+                                </div>
+                                <Switch />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div v-for="i in 10" :key="i" class="rounded-xl my-2 h-1/4 bg-sidebar px-8 py-4">
-                    <p class="text-xl font-bold">Default Background</p>
-                </div> -->
             </div>
             
         </div>
@@ -97,6 +136,12 @@ const routeToSettings = () => {
 }
 *:hover {  
   scrollbar-color: #d3d3d345 transparent;
+}
+
+.bg-select-dsplay {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 </style>
