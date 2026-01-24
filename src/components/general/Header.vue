@@ -3,7 +3,8 @@ import { Minimize, Maximize2, X } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 import { getCurrentWindow  } from "@tauri-apps/api/window";
 import { useColorMode } from '@vueuse/core'
-import { Sun, Moon } from 'lucide-vue-next'
+import { Sun, Moon, Edit,Home } from 'lucide-vue-next'
+import router from "@/router";
 const appWindow = getCurrentWindow();
 const colorMode = useColorMode()  
 const minimize = async() => {
@@ -25,7 +26,24 @@ const close = async () => {
     <div class="w-1/3 h-full"></div>
     
     <!-- 右侧区域 - 窗口控制按钮 -->
+     ARKTOS DEBUG
     <div class="window-controls flex justify-end items-center h-full w-1/3">
+      <Button 
+        variant="ghost"
+        size="icon"
+        class="hover:bg-secondary aspect-square rounded dark:hover:bg-sidebar-ring"
+        @click="()=>{router.push('/')}"
+        >
+          <Home class="h-4 w-4" />
+      </Button>
+      <Button 
+        variant="ghost"
+        size="icon"
+        class="hover:bg-secondary aspect-square rounded dark:hover:bg-sidebar-ring"
+        @click="()=>{router.push('/editor')}"
+        >
+          <Edit class="h-4 w-4" />
+      </Button>
       <Button 
       variant="ghost"
       size="icon"

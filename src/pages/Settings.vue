@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft, Clipboard, Folder,Upload } from 'lucide-vue-next'
 import Switch from '@/components/ui/switch/Switch.vue';
+import { Kbd, KbdGroup } from '@/components/ui/kbd'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const routeToSettings = () => {
@@ -74,31 +75,52 @@ const routeToSettings = () => {
                     </div>
                 </div>
                 <div class="rounded-xl mb-20 h-1/4 bg-sidebar px-8 py-4 mt-8" id="keyboard-shortcut-editor">
-                    <p class="text-xl font-bold">Keyboard Shortcuts</p>
-                    <div>
-                        <div class="flex text-sm">
-                            <div class="flex items-center py-2">
-                                <Folder class="w-4.5 h-4.5"/>
-                                <p class="mx-2">Save Directory</p>
+                    <p class="text-xl font-bold select-none">Keyboard Shortcuts</p>
+                    <div class="w-full mt-4">
+                        <p class="text-sm text-foreground/50 select-none">Keyboard Shortcuts</p>
+                        <div class="flex mt-2 flex-col gap-2">
+                            <div v-for="i in 3" :key="i" class="bg-background rounded-lg px-4 flex items-center py-4 justify-between w-full">
+                                <p class="text-sm text-foreground/50">
+                                    {{ i === 1 ? 'Save Screenshot' : i === 2 ? 'Open Save Directory' : i === 3 ? 'Open App Directory' : i === 4 ? 'Open App Logs' : i === 5 ? 'Restart App' : 'Exit App' }}
+                                </p>
+                                <div class="flex gap-2">
+                                    
+                                    <KbdGroup class="cursor-pointer p-1 rounded text-xs bg-background/80 hover:bg-secondary transition-colors! duration-400">
+                                        <Kbd>⌘</Kbd>
+                                        <span>+</span>
+                                        <Kbd>E</Kbd>
+                                    </KbdGroup>
+                                    <Button size="sm" class="cursor-pointer" variant="ghost">Enable</Button>
+                                </div>
+                                
+                            </div>
+                            <div v-for="i in 3" :key="i" class="hidden bg-background rounded-lg px-4 flex items-center py-4 justify-between w-full">
+                                <Input placeholder="Press shortcut" size="sm"></Input>
+                                <div class="flex gap-2">
+                                    <Button size="sm" class="cursor-pointer" variant="ghost">Cancel</Button>
+                                </div>
+                                <div class="flex gap-2">
+                                    <Button size="sm" class="cursor-pointer" variant="ghost">Enable</Button>
+                                </div>
+                                
                             </div>
                         </div>
-                        <Input placeholder="Select save directory" />
-                        <p class="text-xs mt-2">Screenshot will be saved to this directory</p>
                     </div>
+                    
+                    <Separator class="mt-4" />
                     <div class="w-full mt-4" >
-                        <div class="flex text-sm ">
-                            <div class="flex items-center py-2 justify-between w-full">
-                                <div class="">
-                                    <div class="flex">
-                                        <Clipboard class="w-4.5 h-4.5"/>
-                                        <p class="mx-2">copy to clipboard</p>
-                                    </div>
-                                    
-                                    <p class="text-xs mt-2">
-                                        Automatically copy screenshots to clipboard after saving
-                                    </p>
-                                </div>
-                                <Switch />
+                        
+                        <p class="text-sm text-foreground/50 select-none">EDITOR</p>
+                        <div class="grid grid-cols-2 gap-4 mt-2">
+                            <div v-for="i in 6" :key="i" class=" flex items-center py-1 justify-between w-full">
+                                <p class="text-sm text-foreground/50 select-none">
+                                    {{ i === 1 ? 'Save Screenshot' : i === 2 ? 'Open Save Directory' : i === 3 ? 'Open App Directory' : i === 4 ? 'Open App Logs' : i === 5 ? 'Restart App' : 'Exit App' }}
+                                </p>
+                                <KbdGroup class="cursor-pointer bg-sidebar p-1 rounded text-xs hover:bg-secondary transition-colors! duration-400">
+                                    <Kbd>⌘</Kbd>
+                                    <span>+</span>
+                                    <Kbd>E</Kbd>
+                                </KbdGroup>
                             </div>
                         </div>
                     </div>
