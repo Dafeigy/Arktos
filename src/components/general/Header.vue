@@ -21,7 +21,7 @@ const close = async () => {
 </script>
 
 <template>
-  <div class="title-bar w-full h-8 flex items-center justify-between bg-sidebar select-none">
+  <div class="title-bar w-full h-8 flex items-center justify-between bg-sidebar select-none transition-all!">
     <!-- 左侧区域 - 用于拖动窗口 -->
     <div class="w-1/3 h-full"></div>
     

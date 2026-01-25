@@ -61,8 +61,28 @@ import {
     <div class="flex-1 w-full flex overflow-auto">
         <div class="w-1/4 max-w-[400px] bg-sidebar flex flex-col overflow-auto" id="effect-selector">
             <p class="text-sm text-foreground/50 select-none px-4 py-2">Select an annotation to edit</p>
-            <div class="w-full px-4 py-2 gap-1 justify-center items-center flex">
-                <ToggleGroup type="single" class="w-full flex justify-center">
+            <p class="text-sm px-4 text-foreground py-2 mt-2">Background</p>
+            <p class="text-xs px-4  text-foreground/50 mt-2">Solid</p>
+            <div id="background-solid-select" class="flex flex-col items-center w-full">
+                <ToggleGroup type="single" class="grid grid-cols-5 gap-2 my-4 px-4 w-full"  defaultValue="1">
+                    <ToggleGroupItem v-for="i in 5" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
+                        
+                    </ToggleGroupItem>
+                </ToggleGroup>
+                
+            </div>
+            <p class="text-xs px-4  text-foreground/50 mt-2">Gradient</p>
+            <div id="background-gradient-select" class="flex flex-col items-center w-full">
+                <ToggleGroup type="single" class="grid grid-cols-4 gap-2 my-4 px-4 w-full"  defaultValue="1">
+                    <ToggleGroupItem v-for="i in 10" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
+                        
+                    </ToggleGroupItem>
+                </ToggleGroup>
+                
+            </div>
+            <p class="text-sm px-4  text-foreground mt-2">Wallpapers</p>
+            <div class="w-full px-4 py-2 gap-1 justify-center items-center flex mt-4">
+                <ToggleGroup type="single" class="w-full flex justify-center" defaultValue="wallpaper">
                     <ToggleGroupItem value="wallpaper" aria-label="Toggle Wallpaper" class="w-1/2 mx-1">
                         Wallpapers
                     </ToggleGroupItem>
@@ -72,20 +92,22 @@ import {
                 </ToggleGroup>
                 
             </div>
-            <div class="grid grid-cols-4 gap-2 mt-4 px-4">
-                <div v-for="i in 10" :key="i" class="border duration-350 ease-in-out flex justify-center items-center aspect-square rounded-lg cursor-pointer bg-select-dsplay" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }"> </div>
-            </div>
+            <ToggleGroup type="single" class="grid grid-cols-4 gap-2 my-4 px-4 w-full"  defaultValue="1">
+                    <ToggleGroupItem v-for="i in 10" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
+                        
+                    </ToggleGroupItem>
+                </ToggleGroup>
 
             <p class="text-sm px-4 text-foreground py-2 mt-2">Aspect Ratio</p>
             <div id="aspect-ratio-select" class="flex justify-between flex-col items-center px-4">
-                <ToggleGroup type="single" class="w-full flex justify-center">
-                    <ToggleGroupItem value="16:9" aria-label="Toggle 16:9" class="w-1/3 mx-1">
+                <ToggleGroup type="single" class="w-full flex justify-center" defaultValue="21:9">
+                    <ToggleGroupItem value="21:9" aria-label="Toggle 21:9" class="w-1/3 mx-1">
                         21:9
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="9:16" aria-label="Toggle 9:16" class="w-1/3 mx-1">
+                    <ToggleGroupItem value="16:9" aria-label="Toggle 16:9" class="w-1/3 mx-1">
                         16:9
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="9:16" aria-label="Toggle 9:16" class="w-1/3 mx-1">
+                    <ToggleGroupItem value="4:3" aria-label="Toggle 4:3" class="w-1/3 mx-1">
                         4:3
                     </ToggleGroupItem>
                 </ToggleGroup>
