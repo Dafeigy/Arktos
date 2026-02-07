@@ -27,6 +27,20 @@
       "csp": null
     }
   },
+  "plugins": {
+    "fs": {
+      "allowWrite": [
+        {
+          "path": "Pictures",
+          "recursive": true
+        },
+        {
+          "path": "Downloads",
+          "recursive": true
+        }
+      ]
+    }
+  },
   "bundle": {
     "active": true,
     "targets": "all",

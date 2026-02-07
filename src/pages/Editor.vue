@@ -1,12 +1,74 @@
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { Button } from '@/components/ui/button';
 // import { Select } from '@/components/ui/select';
+import UploadFile from '@/components/general/UploadFile.vue'
 import { ToggleGroup, ToggleGroupItem  } from '@/components/ui/toggle-group';
 import { Slider } from '@/components/ui/slider';
 import {
     Undo, Redo, Save, Copy,
     MousePointer2, Circle, Square, Minus, Type, ArrowUpRight, Hash
     } from 'lucide-vue-next'
+
+
+const selectedBackground = ref('asset-24.avif');
+const selectedAspectRatio = ref('16:9');
+
+const bgImages = [
+    'asset-13.jpg',
+    'asset-18.jpg',
+    'asset-19.jpg',
+    'asset-24.avif',
+    'asset-25.jpg',
+    'asset-26.jpeg',
+    'asset-27.jpeg',
+    'asset-28.jpeg',
+    'asset-29.jpeg',
+    'asset-30.jpeg'
+];
+
+const meshImages = [
+    'mesh1.webp',
+    'mesh2.webp',
+    'mesh3.webp',
+    'mesh4.webp',
+    'mesh5.webp',
+    'mesh6.webp',
+    'mesh7.webp',
+    'mesh8.webp',
+    'mesh9.webp',
+    'mesh10.webp',
+    'mesh11.webp',
+    'mesh12.webp',
+    'mesh13.webp',
+    'mesh14.webp',
+    'mesh15.webp',
+    'mesh16.webp',
+    'mesh17.webp'
+];
+
+const getBackgroundImage = computed(() => {
+    if (bgImages.includes(selectedBackground.value)) {
+        return `url(/src/assets/bg-images/${selectedBackground.value})`;
+    } else {
+        return `url(/src/assets/mesh/${selectedBackground.value})`;
+    }
+});
+
+const getAspectRatioClass = computed(() => {
+    switch (selectedAspectRatio.value) {
+        case '21:9':
+            return 'aspect-[21/9]';
+        case '16:9':
+            return 'aspect-video';
+        case '4:3':
+            return 'aspect-[4/3]';
+        default:
+            return 'aspect-video';
+    }
+});
+
+
 </script>
 <template>
 <div class="h-full w-full  flex flex-col transition-all! duration-400! ease-linear! overflow-hidden">
@@ -62,25 +124,26 @@ import {
         <div class="w-1/4 max-w-[400px] bg-sidebar flex flex-col overflow-auto" id="effect-selector">
             <p class="text-sm text-foreground/50 select-none px-4 py-2">Select an annotation to edit</p>
             <p class="text-sm px-4 text-foreground py-2 mt-2">Background</p>
-            <p class="text-xs px-4  text-foreground/50 mt-2">Solid</p>
-            <div id="background-solid-select" class="flex flex-col items-center w-full">
-                <ToggleGroup type="single" class="grid grid-cols-5 gap-2 my-4 px-4 w-full"  defaultValue="1">
-                    <ToggleGroupItem v-for="i in 5" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
+            <div id="background-solid-select" class="flex flex-col w-full">
+                <ToggleGroup type="single" class="flex flex-col justify-start items-start" v-model="selectedBackground">
+                    <p class="text-xs px-4 text-foreground/50 mt-2">Solid</p>
+                    <div class="grid grid-cols-4 gap-2 my-4 px-4 w-full">
+                        <ToggleGroupItem v-for="img in bgImages" :key="img" :value="img" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-images/${img})` }">
                         
-                    </ToggleGroupItem>
+                        </ToggleGroupItem>
+                    </div>
+                    <p class="text-xs px-4 text-foreground/50 mt-2">Gradient</p>
+                    <div class="grid grid-cols-4 gap-2 my-4 px-4 w-full">
+                        <ToggleGroupItem v-for="img in meshImages" :key="img" :value="img" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/mesh/${img})` }">
+                        
+                        </ToggleGroupItem>
+                    </div>
+                    
                 </ToggleGroup>
                 
             </div>
-            <p class="text-xs px-4  text-foreground/50 mt-2">Gradient</p>
-            <div id="background-gradient-select" class="flex flex-col items-center w-full">
-                <ToggleGroup type="single" class="grid grid-cols-4 gap-2 my-4 px-4 w-full"  defaultValue="1">
-                    <ToggleGroupItem v-for="i in 10" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
-                        
-                    </ToggleGroupItem>
-                </ToggleGroup>
-                
-            </div>
-            <p class="text-sm px-4  text-foreground mt-2">Wallpapers</p>
+
+            <!-- <p class="text-sm px-4  text-foreground mt-2">Wallpapers</p>
             <div class="w-full px-4 py-2 gap-1 justify-center items-center flex mt-4">
                 <ToggleGroup type="single" class="w-full flex justify-center" defaultValue="wallpaper">
                     <ToggleGroupItem value="wallpaper" aria-label="Toggle Wallpaper" class="w-1/2 mx-1">
@@ -96,11 +159,11 @@ import {
                     <ToggleGroupItem v-for="i in 10" :key="i" :value="i" aria-label="" class="w-full flex justify-center items-center h-full aspect-square mx-1 cursor-pointer bg-select-dsplay data-[state=on]:border-2 data-[state=on]:border-green-300" :style="{ backgroundImage: `url(/src/assets/bg-imgs/${i%5+1}.jpeg)` }">
                         
                     </ToggleGroupItem>
-                </ToggleGroup>
+            </ToggleGroup> -->
 
             <p class="text-sm px-4 text-foreground py-2 mt-2">Aspect Ratio</p>
             <div id="aspect-ratio-select" class="flex justify-between flex-col items-center px-4">
-                <ToggleGroup type="single" class="w-full flex justify-center" defaultValue="21:9">
+                <ToggleGroup type="single" class="w-full flex justify-center" v-model="selectedAspectRatio">
                     <ToggleGroupItem value="21:9" aria-label="Toggle 21:9" class="w-1/3 mx-1">
                         21:9
                     </ToggleGroupItem>
@@ -199,9 +262,9 @@ import {
 
         
         <div id="preview" class="bg-background w-full justify-center items-center flex">
-            <div class="h-[80%] aspect-video rounded-2xl bg-select-dsplay flex justify-center items-center" id="preview-container" :style="{ backgroundImage: `url(/src/assets/bg-imgs/1.jpeg)` }">
-                <div class="text-foreground/50 h-9/10 aspect-video bg-indigo-300/10 rounded-2xl justify-center flex items-center">
-                    Your Screenshot will display here...
+            <div :class="`h-[80%] ${getAspectRatioClass} rounded-2xl bg-select-dsplay flex justify-center items-center`" id="preview-container" :style="{ backgroundImage: getBackgroundImage }">
+                <div class="text-foreground/50 h-9/10  rounded-2xl justify-center flex items-center max-h-[90%] max-w-[90%]">
+                    <UploadFile />
                 </div>
             </div>
         </div>
