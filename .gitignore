@@ -1,0 +1,62 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+sdist/
+*.whl
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# ── IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Testing ──
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# ── Environment ──
+.env
+.env.*
+!.env.example
+pythonenv*
+
+# ── Logs ──
+*.log
+logs/
+
+# ── Docker ──
+.docker/
+
+# ── MyPy ──
+.mypy_cache/
+
+# ── Ruff ──
+.ruff_cache/
+
+# ── Jupyter ──
+*.ipynb_checkpoints/
+
+# ── OS ──
+Desktop.ini
+$RECYCLE.BIN/

@@ -1,0 +1,91 @@
+detector: content_moderation
+version: "1.0"
+
+# Each category has a severity weight and a keyword list.
+# Severity weights: critical=1.0, high=0.8, medium=0.5, low=0.3
+
+violence:
+  severity: critical
+  keywords:
+    - "kill yourself"
+    - "kill everyone"
+    - "bomb threat"
+    - "mass shooting"
+    - "how to build a bomb"
+    - "commit suicide"
+    - "terrorist attack"
+    - "murder"
+    - "assassination"
+    - "genocide"
+
+sexual:
+  severity: critical
+  keywords:
+    - "child pornography"
+    - "sexual abuse"
+    - "rape"
+    - "sexual assault"
+    - "revenge porn"
+    - "non-consensual"
+    - "sex trafficking"
+    - "incest"
+
+hate_speech:
+  severity: critical
+  keywords:
+    - "ethnic cleansing"
+    - "hate crime"
+    - "white supremacy"
+    - "racial slur"
+    - "anti-semitic"
+    - "islamophobic"
+    - "xenophobic"
+    - "nazi"
+
+self_harm:
+  severity: high
+  keywords:
+    - "how to self harm"
+    - "cutting myself"
+    - "suicide method"
+    - "end my life"
+    - "want to die"
+    - "kill myself"
+    - "no reason to live"
+    - "better off dead"
+
+illegal:
+  severity: critical
+  keywords:
+    - "how to make drugs"
+    - "buy illegal weapons"
+    - "human trafficking"
+    - "money laundering"
+    - "how to hack into"
+    - "sell stolen credit cards"
+    - "buy fake passport"
+    - "counterfeit currency"
+
+political_cn:
+  severity: high
+  keywords:
+    - "法轮功"
+    - "六四"
+    - "天安门"
+    - "台独"
+    - "藏独"
+    - "疆独"
+    - "达赖"
+    - "刘晓波"
+
+harassment:
+  severity: medium
+  keywords:
+    - "doxxing"
+    - "cyberstalking"
+    - "grooming"
+    - "catfishing"
+    - "swatting"
+    - "revenge"
+    - "blackmail"
+    - "extortion"
